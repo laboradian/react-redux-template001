@@ -6,11 +6,14 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider, connect } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { createLogger } from 'redux-logger'
 //import PropTypes from 'prop-types'
 
 // index.html ファイルをコピーする
 require('file-loader?name=../../dist/[name].[ext]!../index.html');
+
+const loggerMiddleware = createLogger()
 
 //-----------------------------------
 // Action creators (Actionを返す)
@@ -72,7 +75,12 @@ const AppContainer = (() => {
 // Store
 //-----------------------------------
 
-const store = createStore(aState)
+const store = createStore(
+  aState,
+  applyMiddleware(
+    loggerMiddleware
+  )
+)
 
 //-----------------------------------
 // 画面に表示する
