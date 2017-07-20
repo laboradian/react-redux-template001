@@ -7,7 +7,7 @@
     "test": "mocha --colors --require babel-register test/main.js",
     "watch": "webpack -d --colors --watch",
     "server": "browser-sync start --server dist --serverStatic dist --files dist/*",
-    "build": "webpack -p --progress --colors"
+    "build": "NODE_ENV=production webpack -p --progress --colors"
   },
   "repository": {
     "type": "git",
